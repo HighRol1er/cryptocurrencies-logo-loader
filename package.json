@@ -1,0 +1,52 @@
+{
+  "name": "crypto-cex-img-loader",
+  "version": "1.0.0",
+  "description": "Cryptocurrency exchange image loader - Download and resize crypto icons from major exchanges (Binance, Upbit, Bithumb)",
+  "main": "index.js",
+  "scripts": {
+    "bithumb:ticker": "node fetcher/bithumb-ticker-fetcher.js",
+    "bithumb:icon": "node fetcher/bithumb-icon-fetcher.js",
+    "bithumb:all": "npm run bithumb:ticker && npm run bithumb:icon",
+    "upbit:ticker": "node fetcher/upbit-ticker-fetcher.js",
+    "upbit:icon": "node fetcher/upbit-icon-fetcher.js",
+    "upbit:all": "npm run upbit:ticker && npm run upbit:icon",
+    "binance:ticker": "node fetcher/binance-ticker-fetcher.js",
+    "binance:icon": "node fetcher/binance-icon-fetcher.js",
+    "binance:all": "npm run binance:ticker && npm run binance:icon",
+    "fetch:all": "npm run bithumb:all && npm run upbit:all && npm run binance:all",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cryptocurrency",
+    "crypto",
+    "exchange",
+    "binance",
+    "upbit",
+    "bithumb",
+    "ticker",
+    "icon",
+    "image",
+    "downloader",
+    "resize",
+    "webp",
+    "sharp",
+    "nodejs",
+    "api"
+  ],
+  "author": "HighRol1er",
+  "license": "MIT",
+  "dependencies": {
+    "sharp": "^0.34.3"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hunterjoe/crypto-cex-img-loader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hunterjoe/crypto-cex-img-loader/issues"
+  },
+  "homepage": "https://github.com/hunterjoe/crypto-cex-img-loader#readme"
+}
