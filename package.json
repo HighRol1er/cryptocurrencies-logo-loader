@@ -1,9 +1,20 @@
 {
-  "name": "crypto-cex-img-loader",
+  "name": "crypto-cex-icons",
   "version": "1.0.0",
-  "description": "Cryptocurrency exchange image loader - Download and resize crypto icons from major exchanges (Binance, Upbit, Bithumb)",
+  "description": "Cryptocurrency exchange icons for Binance, Upbit, and Bithumb - Optimized WebP images for web applications",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "icons/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
+    "start": "node svg-downloader.js",
+    "basic": "node download-svg-basic.js",
+    "axios": "node download-svg-axios.js",
+    "multiple": "node download-multiple-svg.js",
+    "test": "node svg-downloader.js --help",
     "bithumb:ticker": "node fetcher/bithumb-ticker-fetcher.js",
     "bithumb:icon": "node fetcher/bithumb-icon-fetcher.js",
     "bithumb:all": "npm run bithumb:ticker && npm run bithumb:icon",
@@ -13,8 +24,8 @@
     "binance:ticker": "node fetcher/binance-ticker-fetcher.js",
     "binance:icon": "node fetcher/binance-icon-fetcher.js",
     "binance:all": "npm run binance:ticker && npm run binance:icon",
-    "fetch:all": "npm run bithumb:all && npm run upbit:all && npm run binance:all",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "fetch:all": "npm run binance:all && npm run upbit:all && npm run bithumb:all",
+    "prepublishOnly": "node -e \"console.log('Publishing crypto-cex-icons package...')\""
   },
   "keywords": [
     "cryptocurrency",
@@ -35,18 +46,19 @@
   ],
   "author": "HighRol1er",
   "license": "MIT",
-  "dependencies": {
-    "sharp": "^0.34.3"
-  },
-  "engines": {
-    "node": ">=14.0.0"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hunterjoe/crypto-cex-img-loader.git"
+    "url": "git+https://github.com/HighRol1er/crypto-cex-img-loader.git"
   },
   "bugs": {
-    "url": "https://github.com/hunterjoe/crypto-cex-img-loader/issues"
+    "url": "https://github.com/HighRol1er/crypto-cex-img-loader/issues"
   },
-  "homepage": "https://github.com/hunterjoe/crypto-cex-img-loader#readme"
+  "homepage": "https://github.com/HighRol1er/crypto-cex-img-loader#readme",
+  "dependencies": {
+    "sharp": "^0.33.2"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
 }

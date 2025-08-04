@@ -1,6 +1,78 @@
-# Crypto CEX Image Loader 🚀
+# Crypto CEX Icons 🚀
 
-암호화폐 거래소에서 거래 목록과 아이콘을 자동으로 수집하는 Node.js 도구입니다. Binance, Upbit, Bithumb의 거래 목록을 가져와서 아이콘을 다운로드하고 최적화합니다.
+암호화폐 거래소 아이콘 패키지입니다. Binance, Upbit, Bithumb의 최적화된 WebP 아이콘들을 npm 패키지로 제공합니다.
+
+## 📦 설치
+
+```bash
+npm install crypto-cex-icons
+```
+
+## 🚀 사용법
+
+### 기본 사용법
+
+```javascript
+const cryptoIcons = require("crypto-cex-icons");
+
+// 특정 거래소의 모든 아이콘 목록 가져오기
+const binanceIcons = cryptoIcons.getIcons("binance");
+console.log("Binance icons:", binanceIcons);
+
+// 특정 티커의 아이콘 경로 가져오기
+const btcPath = cryptoIcons.getIconPath("binance", "BTC");
+console.log("BTC icon path:", btcPath);
+
+// 특정 티커의 아이콘 URL 가져오기 (웹에서 사용)
+const btcUrl = cryptoIcons.getIconUrl("binance", "BTC");
+console.log("BTC icon URL:", btcUrl);
+
+// 모든 거래소의 모든 아이콘 목록
+const allIcons = cryptoIcons.getAllIcons();
+console.log("All icons:", allIcons);
+
+// 특정 티커가 어떤 거래소에서 사용 가능한지 확인
+const btcAvailability = cryptoIcons.checkTickerAvailability("BTC");
+console.log("BTC availability:", btcAvailability);
+```
+
+### 웹에서 사용하기
+
+```html
+<!-- HTML에서 직접 사용 -->
+<img
+  src="./node_modules/crypto-cex-icons/icons/binance/BTC.webp"
+  alt="Bitcoin"
+/>
+
+<!-- 또는 JavaScript로 동적 로드 -->
+<script>
+  const cryptoIcons = require("crypto-cex-icons");
+  const btcUrl = cryptoIcons.getIconUrl("binance", "BTC");
+  document.getElementById("btc-icon").src = btcUrl;
+</script>
+```
+
+### React에서 사용하기
+
+```jsx
+import cryptoIcons from "crypto-cex-icons";
+
+function CryptoIcon({ exchange, ticker, size = 32 }) {
+  const iconPath = cryptoIcons.getIconPath(exchange, ticker);
+
+  if (!iconPath) {
+    return <div>Icon not found</div>;
+  }
+
+  return (
+    <img src={iconPath} alt={`${ticker} icon`} width={size} height={size} />
+  );
+}
+
+// 사용 예시
+<CryptoIcon exchange="binance" ticker="BTC" size={64} />;
+```
 
 ## ✨ 주요 기능
 
