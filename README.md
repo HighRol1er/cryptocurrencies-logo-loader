@@ -7,7 +7,14 @@
 ### npm 패키지로 설치 (권장)
 
 ```bash
+# npm 사용
 npm install crypto-cex-icons
+
+# 또는 pnpm 사용
+pnpm add crypto-cex-icons
+
+# 또는 yarn 사용
+yarn add crypto-cex-icons
 ```
 
 **📊 패키지 정보**
@@ -25,8 +32,12 @@ npm install crypto-cex-icons
 git clone https://github.com/HighRol1er/crypto-cex-img-loader.git
 cd crypto-cex-img-loader
 
-# 의존성 설치
+# 의존성 설치 (선택사항)
 npm install
+# 또는
+pnpm install
+# 또는
+yarn install
 ```
 
 ## 🚀 사용법
@@ -66,13 +77,21 @@ console.log("BTC availability:", btcAvailability);
   alt="Bitcoin"
 />
 
+<!-- pnpm 사용 시 경로 (필요한 경우) -->
+<img
+  src="./node_modules/.pnpm/crypto-cex-icons@1.0.0/node_modules/crypto-cex-icons/icons/binance/BTC.webp"
+  alt="Bitcoin"
+/>
+```
+
 <!-- 또는 JavaScript로 동적 로드 -->
 <script>
   const cryptoIcons = require("crypto-cex-icons");
   const btcUrl = cryptoIcons.getIconUrl("binance", "BTC");
   document.getElementById("btc-icon").src = btcUrl;
 </script>
-```
+
+````
 
 ### React에서 사용하기
 
@@ -93,7 +112,7 @@ function CryptoIcon({ exchange, ticker, size = 32 }) {
 
 // 사용 예시
 <CryptoIcon exchange="binance" ticker="BTC" size={64} />;
-```
+````
 
 ## 📚 API 문서
 
@@ -122,7 +141,8 @@ const binanceIcons = cryptoIcons.getIcons("binance");
 
 ```javascript
 const btcPath = cryptoIcons.getIconPath("binance", "BTC");
-// '/path/to/node_modules/crypto-cex-icons/icons/binance/BTC.webp'
+// npm: '/path/to/node_modules/crypto-cex-icons/icons/binance/BTC.webp'
+// pnpm: '/path/to/node_modules/.pnpm/crypto-cex-icons@1.0.0/node_modules/crypto-cex-icons/icons/binance/BTC.webp'
 ```
 
 **매개변수:**
@@ -140,7 +160,8 @@ const btcPath = cryptoIcons.getIconPath("binance", "BTC");
 
 ```javascript
 const btcUrl = cryptoIcons.getIconUrl("binance", "BTC");
-// './node_modules/crypto-cex-icons/icons/binance/BTC.webp'
+// npm: './node_modules/crypto-cex-icons/icons/binance/BTC.webp'
+// pnpm: './node_modules/.pnpm/crypto-cex-icons@1.0.0/node_modules/crypto-cex-icons/icons/binance/BTC.webp'
 ```
 
 **매개변수:**
@@ -489,6 +510,7 @@ Sharp 설정을 수정하여 이미지 품질을 조절할 수 있습니다:
 2. **서버 부하**: 많은 요청을 보낼 때는 적절한 간격을 두세요
 3. **저작권**: 다운로드한 아이콘의 저작권을 확인하세요
 4. **네트워크**: 불안정한 네트워크 환경에서는 실패할 수 있습니다
+5. **pnpm 사용 시**: pnpm은 심볼릭 링크를 사용하므로 직접 파일 경로 접근 시 다른 경로가 될 수 있습니다. `getIconPath()` 함수를 사용하는 것을 권장합니다.
 
 ## 🛠️ 기술 스택
 
