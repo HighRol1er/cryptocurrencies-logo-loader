@@ -1,15 +1,29 @@
-const path = require("path");
-const fs = require("fs");
+// 클라이언트 사이드에서도 사용할 수 있도록 조건부 import
+let path, fs, ICONS_PATH, EXCHANGE_PATHS;
 
-// 아이콘 경로 상수
-const ICONS_PATH = path.join(__dirname, "icons");
+// Node.js 환경에서만 fs와 path 모듈 로드
+if (typeof window === "undefined") {
+  path = require("path");
+  fs = require("fs");
 
-// 거래소별 아이콘 경로
-const EXCHANGE_PATHS = {
-  binance: path.join(ICONS_PATH, "binance"),
-  upbit: path.join(ICONS_PATH, "upbit"),
-  bithumb: path.join(ICONS_PATH, "bithumb"),
-};
+  // 아이콘 경로 상수
+  ICONS_PATH = path.join(__dirname, "icons");
+
+  // 거래소별 아이콘 경로
+  EXCHANGE_PATHS = {
+    binance: path.join(ICONS_PATH, "binance"),
+    upbit: path.join(ICONS_PATH, "upbit"),
+    bithumb: path.join(ICONS_PATH, "bithumb"),
+  };
+} else {
+  // 브라우저 환경에서는 상대 경로 사용
+  ICONS_PATH = "./icons";
+  EXCHANGE_PATHS = {
+    binance: "./icons/binance",
+    upbit: "./icons/upbit",
+    bithumb: "./icons/bithumb",
+  };
+}
 
 /**
  * 특정 거래소의 모든 아이콘 목록을 가져옵니다
@@ -24,6 +38,11 @@ function getIcons(exchange) {
         EXCHANGE_PATHS
       ).join(", ")}`
     );
+  }
+
+  // 브라우저 환경에서는 빈 배열 반환 (파일 시스템 접근 불가)
+  if (typeof window !== "undefined") {
+    return [];
   }
 
   if (!fs.existsSync(exchangePath)) {
@@ -52,6 +71,13 @@ function getIconPath(exchange, ticker) {
     );
   }
 
+  // 브라우저 환경에서는 상대 경로 반환
+  if (typeof window !== "undefined") {
+    return `${
+      EXCHANGE_PATHS[exchange.toLowerCase()]
+    }/${ticker.toUpperCase()}.webp`;
+  }
+
   const iconPath = path.join(exchangePath, `${ticker.toUpperCase()}.webp`);
   return fs.existsSync(iconPath) ? iconPath : null;
 }
@@ -65,6 +91,11 @@ function getIconPath(exchange, ticker) {
 function getIconUrl(exchange, ticker) {
   const iconPath = getIconPath(exchange, ticker);
   if (!iconPath) return null;
+
+  // 브라우저 환경에서는 상대 경로 반환
+  if (typeof window !== "undefined") {
+    return `./node_modules/crypto-cex-icons/icons/${exchange.toLowerCase()}/${ticker.toUpperCase()}.webp`;
+  }
 
   // npm 패키지에서 상대 경로로 접근
   return `./node_modules/crypto-cex-icons/icons/${exchange.toLowerCase()}/${ticker.toUpperCase()}.webp`;
