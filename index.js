@@ -41,10 +41,8 @@ function getIconPath(exchange, ticker) {
     );
   }
 
-  // 브라우저 환경에서는 상대 경로 반환
-  return `${
-    EXCHANGE_PATHS[exchange.toLowerCase()]
-  }/${ticker.toUpperCase()}.webp`;
+  // node_modules에서 직접 참조 (Next.js Image 컴포넌트용)
+  return `/node_modules/crypto-cex-icons/icons/${exchange.toLowerCase()}/${ticker.toUpperCase()}.webp`;
 }
 
 /**
@@ -57,8 +55,8 @@ function getIconUrl(exchange, ticker) {
   const iconPath = getIconPath(exchange, ticker);
   if (!iconPath) return null;
 
-  // npm 패키지에서 상대 경로로 접근
-  return `./node_modules/crypto-cex-icons/icons/${exchange.toLowerCase()}/${ticker.toUpperCase()}.webp`;
+  // node_modules에서 직접 참조 (Next.js Image 컴포넌트용)
+  return `/node_modules/crypto-cex-icons/icons/${exchange.toLowerCase()}/${ticker.toUpperCase()}.webp`;
 }
 
 /**

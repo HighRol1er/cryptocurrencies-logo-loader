@@ -1,6 +1,6 @@
 {
   "name": "crypto-cex-icons",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "Cryptocurrency exchange icons for Binance, Upbit, and Bithumb - Optimized WebP images for web applications",
   "main": "index.js",
   "types": "types/crypto-cex-icons.d.ts",
